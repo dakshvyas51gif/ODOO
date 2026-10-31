@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoices | Subscript Admin</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-brand"><h2>Subscript</h2><p>Admin Workspace</p></div>
+      <nav class="admin-nav" aria-label="Admin navigation">
+        <a href="admin-dashboard.html">Dashboard</a>
+        <a href="products.html">Products</a>
+        <a href="plans.html">Subscription Plans</a>
+        <a href="discounts.html">Discounts</a>
+        <a href="quotations.html">Quotations</a>
+        <a href="quotation-pipeline.html">Quotation Pipeline</a>
+        <a href="invoices.html" class="active">Invoices</a>
+        <a href="payments.html">Payments</a>
+      </nav>
+      <p class="sidebar-footer">Finance &amp; Leadership</p>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-header">
+        <div><h1>Invoices</h1><p>Review customer invoices and print or save formal copies as PDF.</p></div>
+        <button class="btn btn-secondary" id="refreshInvoicesBtn" type="button">Refresh</button>
+      </header>
+
+      <p class="page-message" id="invoicesMessage" role="status" aria-live="polite">Loading invoices…</p>
+
+      <section class="admin-stats" aria-label="Invoice summary">
+        <article class="stat-card"><p class="stat-label">Total invoices</p><h2 id="totalInvoices">—</h2></article>
+        <article class="stat-card"><p class="stat-label">Paid</p><h2 id="paidInvoices">—</h2></article>
+        <article class="stat-card"><p class="stat-label">Pending</p><h2 id="pendingInvoices">—</h2></article>
+        <article class="stat-card"><p class="stat-label">Overdue</p><h2 id="overdueInvoices">—</h2></article>
+      </section>
+
+      <section class="admin-section">
+        <div class="toolbar">
+          <input type="search" id="invoiceSearch" placeholder="Search invoice or customer" aria-label="Search invoices">
+          <select id="invoiceStatusFilter" aria-label="Filter invoices by status">
+            <option value="all">All statuses</option><option value="paid">Paid</option><option value="pending">Pending</option><option value="overdue">Overdue</option>
+          </select>
+        </div>
+        <div class="table-container">
+          <table class="admin-table">
+            <thead><tr><th>Invoice</th><th>Customer</th><th>Issue date</th><th>Due date</th><th>Amount</th><th>Balance</th><th>Status</th><th>Deliverable</th></tr></thead>
+            <tbody id="invoicesTableBody"><tr><td colspan="8" class="empty-state">Invoice records will load from the API.</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <section id="invoicePrintArea" class="print-document" aria-label="Invoice print preview"></section>
+  <script src="../js/admin.js"></script>
+  <script src="../js/billing.js"></script>
+</body>
+</html>
