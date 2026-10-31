@@ -9,9 +9,8 @@ Frontend module for the **Person 3 – Client Interfaces & User Portals** workst
 This package contains **7 source files**:
 
 ```text
-Document_Generation_Leadership_Dashboard/
-├── README.md
-└── person3/
+
+ person3/
     ├── admin/
     │   ├── admin-dashboard.html
     │   ├── invoices.html
