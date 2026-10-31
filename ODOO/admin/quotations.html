@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotations | Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <aside class="admin-sidebar">
+        <div class="admin-brand">
+            <h2>Subscript</h2>
+            <p>Admin Workspace</p>
+        </div>
+
+        <nav class="admin-nav">
+            <a href="admin-dashboard.html">Dashboard</a>
+            <a href="products.html">Products</a>
+            <a href="plans.html">Subscription Plans</a>
+            <a href="discounts.html">Discounts</a>
+            <a href="quotations.html" class="active">Quotations</a>
+            <a href="quotation-pipeline.html">Quotation Pipeline</a>
+            <a href="invoices.html">Invoices</a>
+            <a href="payments.html">Payments</a>
+        </nav>
+    </aside>
+
+    <main class="admin-main">
+
+        <header class="admin-header">
+            <div>
+                <h1>Quotations</h1>
+                <p>Create and manage customer quotations.</p>
+            </div>
+
+            <button class="btn btn-primary" id="addQuotationBtn">
+                + Create Quotation
+            </button>
+        </header>
+
+        <section class="admin-section">
+
+            <div class="table-toolbar">
+                <input
+                    type="search"
+                    id="quotationSearch"
+                    placeholder="Search quotations..."
+                >
+
+                <select id="quotationStatusFilter">
+                    <option value="all">All Status</option>
+                    <option value="draft">Draft</option>
+                    <option value="sent">Sent</option>
+                    <option value="accepted">Accepted</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+            </div>
+
+            <div class="table-container">
+                <table class="admin-table">
+
+                    <thead>
+                        <tr>
+                            <th>Quotation ID</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Valid Until</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="quotationsTableBody">
+                        <tr>
+                            <td colspan="7" class="empty-state">
+                                Quotations will load from the API.
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Products | Brightloop Admin</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="../js/admin.js" defer></script>
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+
+        <div class="admin-brand">
+            <div class="brand-logo">B</div>
+            <h2>Brightloop</h2>
+        </div>
+
+        <p class="sidebar-heading">WORKSPACE</p>
+
+        <nav class="admin-navigation">
+
+            <a href="admin-dashboard.html" class="admin-nav-link">
+                <span>▦</span> Dashboard
+            </a>
+
+            <a href="products.html" class="admin-nav-link active">
+                <span>▣</span> Products
+            </a>
+
+            <a href="plans.html" class="admin-nav-link">
+                <span>◇</span> Subscription Plans
+            </a>
+
+            <a href="discounts.html" class="admin-nav-link">
+                <span>％</span> Discounts
+            </a>
+
+            <a href="quotations.html" class="admin-nav-link">
+                <span>▤</span> Quotations
+            </a>
+
+            <a href="quotation-pipeline.html" class="admin-nav-link">
+                <span>⇄</span> Sales Pipeline
+            </a>
+
+            <a href="invoices.html" class="admin-nav-link">
+                <span>▧</span> Invoices
+            </a>
+
+            <a href="payments.html" class="admin-nav-link">
+                <span>₹</span> Payments
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="admin-dashboard.html" class="admin-nav-link">
+                <span>↩</span> Dashboard
+            </a>
+
+            <a href="../auth/login.html" class="admin-nav-link">
+                <span>⇥</span> Logout
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+
+        <header class="admin-header">
+
+            <div>
+                <h1>Product Catalog</h1>
+                <p>Manage products, variants and pricing.</p>
+            </div>
+
+            <div class="admin-profile">
+                <div class="profile-avatar">A</div>
+
+                <div>
+                    <strong>Admin User</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+
+        </header>
+
+        <section class="admin-content">
+
+            <!-- Product Summary -->
+            <div class="admin-stats-grid">
+
+                <article class="admin-stat-card">
+                    <p>Total Products</p>
+                    <h2 id="totalProducts">0</h2>
+                    <span>All catalog products</span>
+                </article>
+
+                <article class="admin-stat-card">
+                    <p>Active Products</p>
+                    <h2 id="activeProducts">0</h2>
+                    <span>Available products</span>
+                </article>
+
+                <article class="admin-stat-card">
+                    <p>Inactive Products</p>
+                    <h2 id="inactiveProducts">0</h2>
+                    <span>Disabled products</span>
+                </article>
+
+            </div>
+
+            <!-- Product Management -->
+            <section class="admin-card">
+
+                <div class="card-heading">
+
+                    <div>
+                        <h3>All Products</h3>
+                        <p>Manage your product catalog.</p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="admin-primary-btn"
+                        id="addProductBtn">
+                        + Add Product
+                    </button>
+
+                </div>
+
+                <!-- Search and Filter -->
+                <div class="admin-filters">
+
+                    <input
+                        type="search"
+                        id="productSearch"
+                        placeholder="Search products..."
+                        aria-label="Search products">
+
+                    <select
+                        id="productStatusFilter"
+                        aria-label="Filter products">
+
+                        <option value="all">All Products</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+
+                    </select>
+
+                </div>
+
+                <!-- Product Table -->
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Variants</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="productList">
+
+                            <tr>
+                                <td colspan="6">
+                                    Products will appear here.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <p
+                    id="productMessage"
+                    class="table-message"
+                    role="status"
+                    aria-live="polite">
+                </p>
+
+            </section>
+
+            <!-- Add / Edit Product Modal -->
+            <div
+                class="admin-modal"
+                id="productModal"
+                hidden>
+
+                <div class="admin-modal-content">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <h2 id="productModalTitle">Add Product</h2>
+                            <p>Create or update a catalog product.</p>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="modal-close"
+                            id="closeProductModal"
+                            aria-label="Close">
+                            ×
+                        </button>
+
+                    </div>
+
+                    <form id="productForm">
+
+                        <input
+                            type="hidden"
+                            id="productId">
+
+                        <div class="form-group">
+
+                            <label for="productName">
+                                Product Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="productName"
+                                required
+                                maxlength="100"
+                                placeholder="Enter product name">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="productCategory">
+                                Category
+                            </label>
+
+                            <input
+                                type="text"
+                                id="productCategory"
+                                required
+                                maxlength="60"
+                                placeholder="Enter category">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="productDescription">
+                                Description
+                            </label>
+
+                            <textarea
+                                id="productDescription"
+                                rows="3"
+                                maxlength="500"
+                                placeholder="Product description">
+                            </textarea>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="productPrice">
+                                Base Price (INR)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="productPrice"
+                                min="0"
+                                step="0.01"
+                                required
+                                placeholder="0.00">
+
+                        </div>
+
+                        <!-- Product Variant -->
+                        <div class="form-group">
+
+                            <label for="variantName">
+                                Variant Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="variantName"
+                                maxlength="60"
+                                placeholder="Example: Standard">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="variantPrice">
+                                Variant Price (INR)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="variantPrice"
+                                min="0"
+                                step="0.01"
+                                placeholder="0.00">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="productStatus">
+                                Product Status
+                            </label>
+
+                            <select id="productStatus">
+
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-actions">
+
+                            <button
+                                type="button"
+                                class="admin-secondary-btn"
+                                id="cancelProduct">
+                                Cancel
+                            </button>
+
+                            <button
+                                type="submit"
+                                class="admin-primary-btn">
+                                Save Product
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer class="admin-footer">
+            © 2026 Brightloop Software. All rights reserved.
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>
+

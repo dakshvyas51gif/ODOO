@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments | Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <aside class="admin-sidebar">
+        <div class="admin-brand">
+            <h2>Subscript</h2>
+            <p>Admin Workspace</p>
+        </div>
+
+        <nav class="admin-nav">
+            <a href="admin-dashboard.html">Dashboard</a>
+            <a href="products.html">Products</a>
+            <a href="plans.html">Subscription Plans</a>
+            <a href="discounts.html">Discounts</a>
+            <a href="quotations.html">Quotations</a>
+            <a href="quotation-pipeline.html">Quotation Pipeline</a>
+            <a href="invoices.html">Invoices</a>
+            <a href="payments.html" class="active">Payments</a>
+        </nav>
+    </aside>
+
+    <main class="admin-main">
+
+        <header class="admin-header">
+            <div>
+                <h1>Payments</h1>
+                <p>Track customer transactions and payment status.</p>
+            </div>
+        </header>
+
+        <!-- Payment Summary -->
+        <section class="admin-stats">
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Total Payments</p>
+                    <h2 id="totalPayments">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Successful</p>
+                    <h2 id="successfulPayments">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Pending</p>
+                    <h2 id="pendingPayments">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Failed</p>
+                    <h2 id="failedPayments">0</h2>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Payments Table -->
+        <section class="admin-section">
+
+            <div class="table-toolbar">
+
+                <input
+                    type="search"
+                    id="paymentSearch"
+                    placeholder="Search payment or customer..."
+                >
+
+                <select id="paymentStatusFilter">
+                    <option value="all">All Status</option>
+                    <option value="successful">Successful</option>
+                    <option value="pending">Pending</option>
+                    <option value="failed">Failed</option>
+                </select>
+
+            </div>
+
+            <div class="table-container">
+                <table class="admin-table">
+
+                    <thead>
+                        <tr>
+                            <th>Payment ID</th>
+                            <th>Customer</th>
+                            <th>Invoice</th>
+                            <th>Date</th>
+                            <th>Method</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="paymentsTableBody">
+                        <tr>
+                            <td colspan="7" class="empty-state">
+                                Payment data will load from the API.
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/admin.js"></script>
+
+</body>
+</html>

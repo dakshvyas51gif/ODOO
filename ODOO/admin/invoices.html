@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoices | Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <aside class="admin-sidebar">
+        <div class="admin-brand">
+            <h2>Subscript</h2>
+            <p>Admin Workspace</p>
+        </div>
+
+        <nav class="admin-nav">
+            <a href="admin-dashboard.html">Dashboard</a>
+            <a href="products.html">Products</a>
+            <a href="plans.html">Subscription Plans</a>
+            <a href="discounts.html">Discounts</a>
+            <a href="quotations.html">Quotations</a>
+            <a href="quotation-pipeline.html">Quotation Pipeline</a>
+            <a href="invoices.html" class="active">Invoices</a>
+            <a href="payments.html">Payments</a>
+        </nav>
+    </aside>
+
+    <main class="admin-main">
+
+        <header class="admin-header">
+            <div>
+                <h1>Invoices</h1>
+                <p>Manage customer invoices and payment status.</p>
+            </div>
+        </header>
+
+        <!-- Invoice Summary -->
+        <section class="admin-stats">
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Total Invoices</p>
+                    <h2 id="totalInvoices">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Paid</p>
+                    <h2 id="paidInvoices">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Pending</p>
+                    <h2 id="pendingInvoices">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Overdue</p>
+                    <h2 id="overdueInvoices">0</h2>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Invoice Table -->
+        <section class="admin-section">
+
+            <div class="table-toolbar">
+
+                <input
+                    type="search"
+                    id="invoiceSearch"
+                    placeholder="Search invoice or customer..."
+                >
+
+                <select id="invoiceStatusFilter">
+                    <option value="all">All Status</option>
+                    <option value="paid">Paid</option>
+                    <option value="pending">Pending</option>
+                    <option value="overdue">Overdue</option>
+                </select>
+
+            </div>
+
+            <div class="table-container">
+                <table class="admin-table">
+
+                    <thead>
+                        <tr>
+                            <th>Invoice ID</th>
+                            <th>Customer</th>
+                            <th>Issue Date</th>
+                            <th>Due Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="invoicesTableBody">
+                        <tr>
+                            <td colspan="7" class="empty-state">
+                                Invoice data will load from the API.
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/admin.js"></script>
+
+</body>
+</html>

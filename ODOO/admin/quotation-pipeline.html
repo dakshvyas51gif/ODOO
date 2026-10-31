@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation Pipeline | Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <aside class="admin-sidebar">
+        <div class="admin-brand">
+            <h2>Subscript</h2>
+            <p>Admin Workspace</p>
+        </div>
+
+        <nav class="admin-nav">
+            <a href="admin-dashboard.html">Dashboard</a>
+            <a href="products.html">Products</a>
+            <a href="plans.html">Subscription Plans</a>
+            <a href="discounts.html">Discounts</a>
+            <a href="quotations.html">Quotations</a>
+            <a href="quotation-pipeline.html" class="active">
+                Quotation Pipeline
+            </a>
+            <a href="invoices.html">Invoices</a>
+            <a href="payments.html">Payments</a>
+        </nav>
+    </aside>
+
+    <main class="admin-main">
+
+        <header class="admin-header">
+            <div>
+                <h1>Quotation Pipeline</h1>
+                <p>Track quotations through their sales stages.</p>
+            </div>
+        </header>
+
+        <!-- Pipeline Summary -->
+        <section class="admin-stats">
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Draft</p>
+                    <h2 id="draftCount">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Sent</p>
+                    <h2 id="sentCount">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Accepted</p>
+                    <h2 id="acceptedCount">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Rejected</p>
+                    <h2 id="rejectedCount">0</h2>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Pipeline Table -->
+        <section class="admin-section">
+
+            <div class="table-toolbar">
+                <input
+                    type="search"
+                    id="pipelineSearch"
+                    placeholder="Search quotation or customer..."
+                >
+
+                <select id="pipelineStageFilter">
+                    <option value="all">All Stages</option>
+                    <option value="draft">Draft</option>
+                    <option value="sent">Sent</option>
+                    <option value="accepted">Accepted</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+            </div>
+
+            <div class="table-container">
+                <table class="admin-table">
+
+                    <thead>
+                        <tr>
+                            <th>Quotation</th>
+                            <th>Customer</th>
+                            <th>Amount</th>
+                            <th>Stage</th>
+                            <th>Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="pipelineTableBody">
+                        <tr>
+                            <td colspan="6" class="empty-state">
+                                Pipeline data will load from the API.
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/admin.js"></script>
+
+</body>
+</html>

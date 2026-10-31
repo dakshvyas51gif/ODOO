@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Brightloop</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="../js/admin.js" defer></script>
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+
+        <div class="admin-brand">
+            <div class="brand-logo">B</div>
+            <h2>Brightloop</h2>
+        </div>
+
+        <p class="sidebar-heading">WORKSPACE</p>
+
+        <nav class="admin-navigation">
+
+            <a href="admin-dashboard.html" class="admin-nav-link active">
+                <span>▦</span> Dashboard
+            </a>
+
+            <a href="products.html" class="admin-nav-link">
+                <span>▣</span> Products
+            </a>
+
+            <a href="plans.html" class="admin-nav-link">
+                <span>◇</span> Subscription Plans
+            </a>
+
+            <a href="discounts.html" class="admin-nav-link">
+                <span>％</span> Discounts
+            </a>
+
+            <a href="quotations.html" class="admin-nav-link">
+                <span>▤</span> Quotations
+            </a>
+
+            <a href="quotation-pipeline.html" class="admin-nav-link">
+                <span>⇄</span> Sales Pipeline
+            </a>
+
+            <a href="invoices.html" class="admin-nav-link">
+                <span>▧</span> Invoices
+            </a>
+
+            <a href="payments.html" class="admin-nav-link">
+                <span>₹</span> Payments
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="../customer/dashboard.html" class="admin-nav-link">
+                <span>↩</span> Customer Portal
+            </a>
+
+            <a href="../auth/login.html" class="admin-nav-link">
+                <span>⇥</span> Logout
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- Main Area -->
+    <main class="admin-main">
+
+        <!-- Top Header -->
+        <header class="admin-header">
+
+            <div>
+                <h1>Dashboard</h1>
+                <p>Welcome to Brightloop Admin Workspace.</p>
+            </div>
+
+            <div class="admin-profile">
+                <div class="profile-avatar">A</div>
+
+                <div>
+                    <strong id="adminName">Admin User</strong>
+                    <small id="adminRole">Administrator</small>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- Dashboard Content -->
+        <section class="admin-content">
+
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <div>
+                    <h2>Business Overview</h2>
+                    <p>Monitor your subscription business performance.</p>
+                </div>
+
+                <select id="dashboardPeriod" aria-label="Select dashboard period">
+                    <option value="month">This Month</option>
+                    <option value="week">This Week</option>
+                    <option value="year">This Year</option>
+                </select>
+            </div>
+
+            <!-- Statistics -->
+            <div class="admin-stats-grid">
+
+                <article class="admin-stat-card">
+                    <p>Total Revenue</p>
+                    <h2 id="totalRevenue">₹ 0</h2>
+                    <span>Revenue collected</span>
+                </article>
+
+                <article class="admin-stat-card">
+                    <p>Active Subscriptions</p>
+                    <h2 id="activeSubscriptions">0</h2>
+                    <span>Currently running</span>
+                </article>
+
+                <article class="admin-stat-card">
+                    <p>Total Customers</p>
+                    <h2 id="totalCustomers">0</h2>
+                    <span>Registered customers</span>
+                </article>
+
+                <article class="admin-stat-card">
+                    <p>Pending Invoices</p>
+                    <h2 id="pendingInvoices">0</h2>
+                    <span>Awaiting payment</span>
+                </article>
+
+            </div>
+
+            <!-- Charts and Activity -->
+            <div class="dashboard-grid">
+
+                <section class="admin-card revenue-card">
+                    <div class="card-heading">
+                        <div>
+                            <h3>Revenue Overview</h3>
+                            <p>Monthly revenue performance</p>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="revenueChart"
+                                aria-label="Monthly revenue chart">
+                        </canvas>
+                    </div>
+                </section>
+
+                <section class="admin-card">
+                    <div class="card-heading">
+                        <div>
+                            <h3>Invoice Summary</h3>
+                            <p>Payment status overview</p>
+                        </div>
+                    </div>
+
+                    <div class="invoice-summary">
+                        <div>
+                            <span class="summary-dot paid-dot"></span>
+                            Paid Invoices
+                            <strong id="paidInvoices">0</strong>
+                        </div>
+
+                        <div>
+                            <span class="summary-dot pending-dot"></span>
+                            Pending Invoices
+                            <strong id="pendingInvoiceCount">0</strong>
+                        </div>
+
+                        <div>
+                            <span class="summary-dot overdue-dot"></span>
+                            Overdue Invoices
+                            <strong id="overdueInvoices">0</strong>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Quick Actions -->
+            <section class="admin-card">
+
+                <div class="card-heading">
+                    <div>
+                        <h3>Quick Actions</h3>
+                        <p>Frequently used workspace operations.</p>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+
+                    <a href="products.html" class="quick-action">
+                        <span>＋</span>
+                        <strong>Add Product</strong>
+                    </a>
+
+                    <a href="plans.html" class="quick-action">
+                        <span>◇</span>
+                        <strong>Create Plan</strong>
+                    </a>
+
+                    <a href="quotations.html" class="quick-action">
+                        <span>▤</span>
+                        <strong>New Quotation</strong>
+                    </a>
+
+                    <a href="payments.html" class="quick-action">
+                        <span>₹</span>
+                        <strong>Record Payment</strong>
+                    </a>
+
+                </div>
+
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="admin-card">
+
+                <div class="card-heading">
+                    <div>
+                        <h3>Recent Activity</h3>
+                        <p>Latest business operations.</p>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Activity</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="recentActivity">
+                            <tr>
+                                <td colspan="4">Loading activities...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+
+        </section>
+
+        <footer class="admin-footer">
+            © 2026 Brightloop Software. All rights reserved.
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>

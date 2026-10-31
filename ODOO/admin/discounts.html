@@ -1,0 +1,458 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Discounts | Admin</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+
+        <div class="admin-brand">
+            <h2>Subscript</h2>
+            <p>Admin Workspace</p>
+        </div>
+
+        <nav class="admin-nav">
+
+            <a href="admin-dashboard.html">Dashboard</a>
+            <a href="products.html">Products</a>
+            <a href="plans.html">Subscription Plans</a>
+
+            <a href="discounts.html" class="active">
+                Discounts
+            </a>
+
+            <a href="quotations.html">Quotations</a>
+            <a href="quotation-pipeline.html">Quotation Pipeline</a>
+            <a href="invoices.html">Invoices</a>
+            <a href="payments.html">Payments</a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>Person 3 · Admin Panel</p>
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="admin-main">
+
+        <!-- Header -->
+        <header class="admin-header">
+
+            <div>
+                <h1>Discount Management</h1>
+
+                <p>
+                    Create and manage discount codes and promotional offers.
+                </p>
+            </div>
+
+            <div class="admin-header-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="addDiscountBtn"
+                >
+                    + Create Discount
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- Summary Cards -->
+        <section class="admin-stats">
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Total Discounts</p>
+                    <h2 id="totalDiscounts">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Active Discounts</p>
+                    <h2 id="activeDiscounts">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Expired Discounts</p>
+                    <h2 id="expiredDiscounts">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p>Total Redemptions</p>
+                    <h2 id="totalRedemptions">0</h2>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Discount List -->
+        <section class="admin-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>All Discounts</h2>
+
+                    <p>
+                        Manage coupon codes, discount values and validity.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- Search and Filters -->
+            <div class="table-toolbar">
+
+                <input
+                    type="search"
+                    id="discountSearch"
+                    placeholder="Search discount or coupon code..."
+                    aria-label="Search discounts"
+                >
+
+                <select
+                    id="discountStatusFilter"
+                    aria-label="Filter discounts by status"
+                >
+                    <option value="all">All Status</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                    <option value="expired">Expired</option>
+                </select>
+
+                <select
+                    id="discountTypeFilter"
+                    aria-label="Filter discounts by type"
+                >
+                    <option value="all">All Types</option>
+                    <option value="percentage">Percentage</option>
+                    <option value="fixed">Fixed Amount</option>
+                </select>
+
+            </div>
+
+
+            <!-- Discounts Table -->
+            <div class="table-container">
+
+                <table class="admin-table">
+
+                    <thead>
+                        <tr>
+                            <th>Discount Name</th>
+                            <th>Coupon Code</th>
+                            <th>Discount</th>
+                            <th>Valid From</th>
+                            <th>Valid Until</th>
+                            <th>Usage</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="discountsTableBody">
+
+                        <tr>
+                            <td colspan="8" class="empty-state">
+                                Discounts will appear here after loading.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Add / Edit Discount Modal -->
+        <div
+            class="modal"
+            id="discountModal"
+            aria-hidden="true"
+        >
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <div>
+                        <h2 id="discountModalTitle">
+                            Create Discount
+                        </h2>
+
+                        <p>
+                            Configure coupon details and validity.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="modal-close"
+                        id="closeDiscountModal"
+                        aria-label="Close modal"
+                    >
+                        &times;
+                    </button>
+
+                </div>
+
+
+                <form id="discountForm">
+
+                    <input
+                        type="hidden"
+                        id="discountId"
+                    >
+
+
+                    <!-- Discount Name -->
+                    <div class="form-group">
+
+                        <label for="discountName">
+                            Discount Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="discountName"
+                            name="name"
+                            placeholder="Enter discount name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Coupon Code -->
+                    <div class="form-group">
+
+                        <label for="couponCode">
+                            Coupon Code
+                        </label>
+
+                        <input
+                            type="text"
+                            id="couponCode"
+                            name="code"
+                            placeholder="e.g. SAVE20"
+                            maxlength="50"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Discount Type and Value -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="discountType">
+                                Discount Type
+                            </label>
+
+                            <select
+                                id="discountType"
+                                name="type"
+                                required
+                            >
+
+                                <option value="percentage">
+                                    Percentage
+                                </option>
+
+                                <option value="fixed">
+                                    Fixed Amount (₹)
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="discountValue">
+                                Discount Value
+                            </label>
+
+                            <input
+                                type="number"
+                                id="discountValue"
+                                name="value"
+                                min="0.01"
+                                step="0.01"
+                                placeholder="Enter value"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Validity -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="discountStartDate">
+                                Valid From
+                            </label>
+
+                            <input
+                                type="date"
+                                id="discountStartDate"
+                                name="startDate"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="discountEndDate">
+                                Valid Until
+                            </label>
+
+                            <input
+                                type="date"
+                                id="discountEndDate"
+                                name="endDate"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Usage Limits -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="usageLimit">
+                                Maximum Usage
+                            </label>
+
+                            <input
+                                type="number"
+                                id="usageLimit"
+                                name="usageLimit"
+                                min="1"
+                                placeholder="Enter usage limit"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="discountStatus">
+                                Status
+                            </label>
+
+                            <select
+                                id="discountStatus"
+                                name="status"
+                                required
+                            >
+
+                                <option value="active">
+                                    Active
+                                </option>
+
+                                <option value="inactive">
+                                    Inactive
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Description -->
+                    <div class="form-group">
+
+                        <label for="discountDescription">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="discountDescription"
+                            name="description"
+                            rows="3"
+                            placeholder="Enter discount details"
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- Actions -->
+                    <div class="modal-footer">
+
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            id="cancelDiscountBtn"
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            id="saveDiscountBtn"
+                        >
+                            Save Discount
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="../js/admin.js"></script>
+<script src="../js/catalog.js"></script>
+</body>
+</html>
