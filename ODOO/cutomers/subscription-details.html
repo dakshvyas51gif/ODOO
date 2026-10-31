@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Subscription Details | Brightloop</title>
+
+    <link rel="stylesheet" href="../css/customer.css">
+    <script src="../js/subscription-details.js" defer></script>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">B</div>
+            <h2>Brightloop</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <p class="nav-label">CUSTOMER MENU</p>
+
+            <a href="dashboard.html" class="nav-link">
+                <span>▦</span> Overview
+            </a>
+
+            <a href="subscriptions.html" class="nav-link active">
+                <span>◇</span> My Subscriptions
+            </a>
+
+            <a href="invoices.html" class="nav-link">
+                <span>▤</span> Invoice History
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="../auth/login.html" class="nav-link">
+                <span>↪</span> Logout
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Subscription Details</h1>
+                <p>View and manage your subscription.</p>
+            </div>
+
+            <div class="profile">
+                <div class="profile-avatar">C</div>
+                <div>
+                    <strong id="customerName">Customer</strong>
+                    <small id="customerEmail">Loading...</small>
+                </div>
+            </div>
+
+        </header>
+
+        <section class="dashboard-content">
+
+            <a href="subscriptions.html" class="back-link">
+                ← Back to Subscriptions
+            </a>
+
+            <!-- Subscription Overview -->
+            <section class="content-card">
+
+                <div class="section-header">
+                    <div>
+                        <h2 id="planName">Loading Plan...</h2>
+                        <p id="subscriptionNumber">Subscription ID: --</p>
+                    </div>
+
+                    <span id="subscriptionStatus" class="status-badge">
+                        Loading...
+                    </span>
+                </div>
+
+                <div class="stats-grid">
+
+                    <article class="stat-card">
+                        <p>Subscription Amount</p>
+                        <h2 id="subscriptionAmount">₹ --</h2>
+                        <span id="billingCycle">Billing cycle: --</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <p>Start Date</p>
+                        <h2 id="startDate">--</h2>
+                        <span>Subscription started</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <p>Next Billing Date</p>
+                        <h2 id="nextBillingDate">--</h2>
+                        <span>Upcoming renewal</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <p>Expiry Date</p>
+                        <h2 id="expiryDate">--</h2>
+                        <span>Subscription expiry</span>
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- Product Information -->
+            <section class="content-card">
+
+                <div class="section-header">
+                    <div>
+                        <h2>Plan Information</h2>
+                        <p>Details of your selected subscription.</p>
+                    </div>
+                </div>
+
+                <div class="details-grid">
+
+                    <div class="detail-item">
+                        <span>Product Name</span>
+                        <strong id="productName">--</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Plan Name</span>
+                        <strong id="detailPlanName">--</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Quantity</span>
+                        <strong id="quantity">--</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Payment Terms</span>
+                        <strong id="paymentTerms">--</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Subscription Actions -->
+            <section class="content-card">
+
+                <div class="section-header">
+                    <div>
+                        <h2>Manage Subscription</h2>
+                        <p>Control your subscription status.</p>
+                    </div>
+                </div>
+
+                <div class="subscription-actions">
+
+                    <div>
+                        <h3 id="actionHeading">Subscription Controls</h3>
+                        <p id="actionDescription">
+                            Pause or resume your subscription.
+                        </p>
+                    </div>
+
+                    <div class="action-buttons">
+
+                        <button
+                            type="button"
+                            id="pauseButton"
+                            class="secondary-button">
+                            Pause Subscription
+                        </button>
+
+                        <button
+                            type="button"
+                            id="resumeButton"
+                            class="primary-button"
+                            hidden>
+                            Resume Subscription
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="actionMessage"
+                    class="form-message"
+                    role="status"
+                    aria-live="polite">
+                </div>
+
+            </section>
+
+        </section>
+
+        <footer class="dashboard-footer">
+            © 2026 Brightloop Software. All rights reserved.
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>

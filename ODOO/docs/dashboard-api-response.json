@@ -1,0 +1,32 @@
+{
+  "customer": {
+    "full_name": "Rahul Sharma",
+    "email": "rahul@example.com"
+  },
+  "summary": {
+    "active_subscriptions": 2,
+    "total_subscriptions": 3,
+    "pending_invoices": 1,
+    "outstanding_amount": "2500.00"
+  },
+  "next_billing": {
+    "amount": "1500.00",
+    "due_date": "2026-11-15"
+  },
+  "subscriptions": [
+    {
+      "plan_name": "Professional",
+      "billing_cycle": "Monthly",
+      "price": "1500.00",
+      "status": "Active"
+    }
+  ],
+  "invoices": [
+    {
+      "invoice_number": "INV-001",
+      "issue_date": "2026-10-25",
+      "total_amount": "1500.00",
+      "status": "Paid"
+    }
+  ]
+}

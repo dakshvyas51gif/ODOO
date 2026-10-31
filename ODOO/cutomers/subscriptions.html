@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Subscriptions | Brightloop</title>
+
+    <link rel="stylesheet" href="../css/customer.css">
+    <script src="../js/subscriptions.js" defer></script>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">B</div>
+            <h2>Brightloop</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <p class="nav-label">CUSTOMER MENU</p>
+
+            <a href="dashboard.html" class="nav-link">
+                <span>▦</span> Overview
+            </a>
+
+            <a href="subscriptions.html" class="nav-link active">
+                <span>◇</span> My Subscriptions
+            </a>
+
+            <a href="invoices.html" class="nav-link">
+                <span>▤</span> Invoice History
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="../auth/login.html" class="nav-link">
+                <span>↪</span> Logout
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>My Subscriptions</h1>
+                <p>Manage and monitor all your subscription plans.</p>
+            </div>
+
+            <div class="profile">
+                <div class="profile-avatar">C</div>
+                <div>
+                    <strong id="customerName">Customer</strong>
+                    <small id="customerEmail">Loading...</small>
+                </div>
+            </div>
+        </header>
+
+        <section class="dashboard-content">
+
+            <!-- Summary -->
+            <div class="stats-grid">
+
+                <article class="stat-card">
+                    <p>Active Plans</p>
+                    <h2 id="activeCount">--</h2>
+                    <span>Currently running</span>
+                </article>
+
+                <article class="stat-card">
+                    <p>Paused Plans</p>
+                    <h2 id="pausedCount">--</h2>
+                    <span>Temporarily paused</span>
+                </article>
+
+                <article class="stat-card">
+                    <p>Closed Plans</p>
+                    <h2 id="closedCount">--</h2>
+                    <span>Completed or cancelled</span>
+                </article>
+
+                <article class="stat-card">
+                    <p>Total Plans</p>
+                    <h2 id="totalCount">--</h2>
+                    <span>All subscriptions</span>
+                </article>
+
+            </div>
+
+            <!-- Subscription List -->
+            <section class="content-card">
+
+                <div class="section-header">
+                    <div>
+                        <h2>All Subscriptions</h2>
+                        <p>View your subscription details and billing status.</p>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="subscription-filters">
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Search by plan or subscription ID..."
+                        aria-label="Search subscriptions"
+                    >
+
+                    <select id="statusFilter" aria-label="Filter by status">
+                        <option value="all">All Statuses</option>
+                        <option value="active">Active</option>
+                        <option value="paused">Paused</option>
+                        <option value="closed">Closed</option>
+                    </select>
+
+                </div>
+
+                <!-- Table -->
+                <div class="table-wrapper">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Subscription ID</th>
+                                <th>Plan</th>
+                                <th>Billing Cycle</th>
+                                <th>Amount</th>
+                                <th>Next Billing</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="subscriptionList">
+                            <tr>
+                                <td colspan="7">Loading subscriptions...</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <p id="subscriptionMessage"
+                   class="table-message"
+                   role="status"
+                   aria-live="polite">
+                </p>
+
+            </section>
+
+        </section>
+
+        <footer class="dashboard-footer">
+            © 2026 Brightloop Software. All rights reserved.
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>

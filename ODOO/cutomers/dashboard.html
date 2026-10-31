@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Dashboard | Brightloop</title>
+
+    <link rel="stylesheet" href="../css/customer.css">
+    <script src="../js/dashboard.js" defer></script>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">B</div>
+            <h2>Brightloop</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-label">CUSTOMER MENU</p>
+
+            <a href="dashboard.html" class="nav-link active">
+                <span>▦</span> Overview
+            </a>
+
+            <a href="subscriptions.html" class="nav-link">
+                <span>◇</span> My Subscriptions
+            </a>
+
+            <a href="invoices.html" class="nav-link">
+                <span>▤</span> Invoice History
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="../auth/login.html" class="nav-link">
+                <span>↪</span> Logout
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="topbar">
+
+            <div>
+                <h1>Dashboard</h1>
+                <p>Welcome back to your Brightloop account.</p>
+            </div>
+
+            <div class="profile">
+                <div class="profile-avatar">C</div>
+                <div>
+                    <strong id="customerName">Customer</strong>
+                    <small id="customerEmail">Loading...</small>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- Dashboard Content -->
+        <section class="dashboard-content">
+
+            <!-- Summary Cards -->
+            <div class="stats-grid">
+
+                <article class="stat-card">
+                    <p>Active Subscriptions</p>
+                    <h2 id="activeSubscriptions">--</h2>
+                    <span>Currently active plans</span>
+                </article>
+
+                <article class="stat-card">
+                    <p>Total Subscriptions</p>
+                    <h2 id="totalSubscriptions">--</h2>
+                    <span>All your plans</span>
+                </article>
+
+                <article class="stat-card">
+                    <p>Pending Invoices</p>
+                    <h2 id="pendingInvoices">--</h2>
+                    <span>Invoices awaiting payment</span>
+                </article>
+
+                <article class="stat-card">
+                    <p>Outstanding Amount</p>
+                    <h2 id="outstandingAmount">₹ --</h2>
+                    <span>Amount still payable</span>
+                </article>
+
+            </div>
+
+            <!-- Next Billing -->
+            <section class="billing-card">
+
+                <div>
+                    <span class="section-tag">UPCOMING BILLING</span>
+                    <h2 id="nextBillingAmount">₹ --</h2>
+                    <p id="nextBillingDate">
+                        Your next billing information will appear here.
+                    </p>
+                </div>
+
+                <a href="subscriptions.html" class="primary-link">
+                    View Subscriptions →
+                </a>
+
+            </section>
+
+            <!-- Recent Subscriptions -->
+            <section class="content-card">
+
+                <div class="section-header">
+                    <div>
+                        <h2>My Subscriptions</h2>
+                        <p>Overview of your current plans.</p>
+                    </div>
+
+                    <a href="subscriptions.html">View All →</a>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Plan</th>
+                                <th>Billing Cycle</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="subscriptionTable">
+
+                            <tr>
+                                <td colspan="4">Loading subscriptions...</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+
+            <!-- Recent Invoices -->
+            <section class="content-card">
+
+                <div class="section-header">
+                    <div>
+                        <h2>Recent Invoices</h2>
+                        <p>Your latest billing documents.</p>
+                    </div>
+
+                    <a href="invoices.html">View All →</a>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Invoice ID</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="invoiceTable">
+
+                            <tr>
+                                <td colspan="4">Loading invoices...</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+
+        </section>
+
+        <footer class="dashboard-footer">
+            © 2026 Brightloop Software. All rights reserved.
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>

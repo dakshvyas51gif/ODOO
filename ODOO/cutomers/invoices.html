@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Invoice History | Brightloop</title>
+
+    <link rel="stylesheet" href="../css/customer.css">
+    <script src="../js/invoices.js" defer></script>
+
+    <style>
+        .invoice-filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .invoice-filters input,
+        .invoice-filters select {
+            padding: 11px 13px;
+            border: 1px solid #ededf3;
+            border-radius: 8px;
+            font-size: 12px;
+            background: white;
+        }
+
+        .invoice-filters input {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .invoice-status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            text-transform: capitalize;
+        }
+
+        .status-paid {
+            background: #eaf9f1;
+            color: #16804f;
+        }
+
+        .status-pending {
+            background: #fff5df;
+            color: #996000;
+        }
+
+        .status-overdue {
+            background: #fff0f0;
+            color: #c52b32;
+        }
+
+        .view-invoice-btn {
+            border: none;
+            background: #635bff;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .invoice-preview {
+            background: white;
+            border: 1px solid #ededf3;
+            border-radius: 13px;
+            padding: 25px;
+        }
+
+        .invoice-preview[hidden] {
+            display: none;
+        }
+
+        .invoice-preview-header,
+        .invoice-preview-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .invoice-preview h2 {
+            margin-bottom: 8px;
+        }
+
+        .invoice-preview p {
+            color: #77788c;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .invoice-preview table {
+            margin: 25px 0;
+        }
+
+        .invoice-total {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .preview-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .preview-actions button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            background: #635bff;
+            color: white;
+        }
+
+        .preview-actions .close-preview {
+            background: #eeeeF3;
+            color: #333;
+        }
+
+        @media (max-width: 500px) {
+            .invoice-filters,
+            .invoice-preview-header {
+                flex-direction: column;
+            }
+
+            .invoice-preview {
+                padding: 16px;
+            }
+        }
+
+        @media print {
+            body.printing * {
+                visibility: hidden !important;
+            }
+
+            body.printing #invoicePreview,
+            body.printing #invoicePreview * {
+                visibility: visible !important;
+            }
+
+            body.printing #invoicePreview {
+                display: block !important;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                border: none;
+            }
+
+            body.printing .preview-actions {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">B</div>
+            <h2>Brightloop</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <p class="nav-label">CUSTOMER MENU</p>
+
+            <a href="dashboard.html" class="nav-link">
+                <span>▦</span> Overview
+            </a>
+
+            <a href="subscriptions.html" class="nav-link">
+                <span>◇</span> My Subscriptions
+            </a>
+
+            <a href="invoices.html" class="nav-link active">
+                <span>▤</span> Invoice History
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="../auth/login.html" class="nav-link">
+                <span>↪</span> Logout
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Invoice History</h1>
+                <p>View and manage your billing documents.</p>
+            </div>
+
+            <div class="profile">
+                <div class="profile-avatar">C</div>
+                <div>
+                    <strong>Customer</strong>
+                    <small>Brightloop Account</small>
+                </div>
+            </div>
+        </header>
+
+        <section class="dashboard-content">
+
+            <!-- Summary Cards -->
+            <div class="stats-grid">
+
+                <article class="stat-card">
+                    <p>Total Invoices</p>
+                    <h2 id="totalInvoices">0</h2>
+                    <span>All billing documents</span>
+                </article>
+
+                <article class="stat-card">
+                    <p>Paid Invoices</p>
+                    <h2 id="paidInvoices">0</h2>
+                    <span>Successfully paid</span>
+                </article>
+
+                <article class="stat-card">
+                    <p>Pending Invoices</p>
+                    <h2 id="pendingInvoices">0</h2>
+                    <span>Awaiting payment</span>
+                </article>
+
+                <article class="stat-card">
+                    <p>Outstanding Amount</p>
+                    <h2 id="outstandingAmount">₹ 0</h2>
+                    <span>Pending and overdue</span>
+                </article>
+
+            </div>
+
+            <!-- Invoice Table -->
+            <section class="content-card">
+
+                <div class="section-header">
+                    <div>
+                        <h2>All Invoices</h2>
+                        <p>Review your invoice history.</p>
+                    </div>
+                </div>
+
+                <div class="invoice-filters">
+
+                    <input
+                        type="search"
+                        id="invoiceSearch"
+                        placeholder="Search invoice number..."
+                        aria-label="Search invoices"
+                    >
+
+                    <select id="invoiceStatusFilter"
+                            aria-label="Filter invoices by status">
+                        <option value="all">All Statuses</option>
+                        <option value="paid">Paid</option>
+                        <option value="pending">Pending</option>
+                        <option value="overdue">Overdue</option>
+                    </select>
+
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Invoice ID</th>
+                                <th>Issue Date</th>
+                                <th>Due Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="invoiceList">
+                            <tr>
+                                <td colspan="6">Loading invoices...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p id="invoiceMessage"
+                   class="table-message"
+                   role="status"
+                   aria-live="polite">
+                </p>
+
+            </section>
+
+            <!-- Invoice Preview -->
+            <section class="invoice-preview" id="invoicePreview" hidden>
+
+                <div class="preview-actions">
+                    <button type="button" id="printInvoice">
+                        Print / Save PDF
+                    </button>
+
+                    <button type="button"
+                            class="close-preview"
+                            id="closePreview">
+                        Close
+                    </button>
+                </div>
+
+                <div class="invoice-preview-header">
+                    <div>
+                        <h2>BRIGHTLOOP</h2>
+                        <p>Subscription Management</p>
+                    </div>
+
+                    <div>
+                        <h2>INVOICE</h2>
+                        <p id="previewInvoiceNumber">Invoice: --</p>
+                        <p id="previewStatus">Status: --</p>
+                    </div>
+                </div>
+
+                <hr style="margin: 22px 0; border: 0; border-top: 1px solid #eee;">
+
+                <h3>Invoice Details</h3>
+
+                <p id="previewCustomer">Customer: --</p>
+                <p id="previewEmail">Email: --</p>
+                <p id="previewIssueDate">Issue Date: --</p>
+                <p id="previewDueDate">Due Date: --</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="previewItems"></tbody>
+                    </table>
+                </div>
+
+                <div class="invoice-total">
+                    <p id="previewSubtotal">Subtotal: ₹ 0</p>
+                    <p id="previewTax">Tax: ₹ 0</p>
+                    <h2 id="previewTotal">Total: ₹ 0</h2>
+                </div>
+
+                <hr style="margin: 22px 0; border: 0; border-top: 1px solid #eee;">
+
+                <div class="invoice-preview-footer">
+                    <p>Thank you for choosing Brightloop.</p>
+                    <p>Computer-generated invoice.</p>
+                </div>
+
+            </section>
+
+        </section>
+
+        <footer class="dashboard-footer">
+            © 2026 Brightloop Software. All rights reserved.
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>
